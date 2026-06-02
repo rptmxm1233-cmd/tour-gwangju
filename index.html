@@ -2423,7 +2423,7 @@ async function loadPlaces() {
   let url = `/places?station_name=${encodeURIComponent(s.station_name)}&line_name=${encodeURIComponent(lineName)}`;
   if (currentFilter !== '전체') url += `&category=${encodeURIComponent(currentFilter)}`;
 
-  const data = await apifetch(API_BASE + '/places/all');
+  const data = await apiFetch(API_BASE + '/places/all');
   console.log('API 요청 주소:', url);
 console.log('API에서 받은 맛집 데이터:', data);
 
