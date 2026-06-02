@@ -2415,6 +2415,7 @@ async function loadPlaces() {
   list.innerHTML = `
     <div class="empty-state">
       <div class="emoji">⏳</div>
+      
       <p>장소 정보를 불러오는 중...</p>
     </div>`;
 
@@ -2422,7 +2423,7 @@ async function loadPlaces() {
   let url = `/places?station_name=${encodeURIComponent(s.station_name)}&line_name=${encodeURIComponent(lineName)}`;
   if (currentFilter !== '전체') url += `&category=${encodeURIComponent(currentFilter)}`;
 
-  const data = await apiFetch(url);
+  const data = await apifetch(API_BASE + '/places/all');
   console.log('API 요청 주소:', url);
 console.log('API에서 받은 맛집 데이터:', data);
 
@@ -3023,7 +3024,7 @@ document.addEventListener('keydown', function(e) {
 async function loadAllHotplaces() {
   showHpSkeleton();
   try {
-    const res = await fetch(API_BASE + '/places/all');
+    const res = await fetch('http://localhost:3000/api/places/all');
     const data = await res.json();
     if (data.success && Array.isArray(data.places)) {
       hp.allPlaces = data.places;
